@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.Test;
 
-
 public class AccountTest {
     @Test
     void testRecord() {
@@ -23,8 +22,7 @@ public class AccountTest {
         boolean result = account.getMoney(500.0);
     
         assertThat(result).isTrue();  
-        assertThat(account.getBalance()).isCloseTo(500.0, within(0.01));
+        assertThat(account.getBalance()).isCloseTo(500.0, Offset.offset(0.01));
         assertThat(account.getNumberRetirement()).isEqualTo(1);
     }
-
 }
