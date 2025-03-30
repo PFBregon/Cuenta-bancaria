@@ -1,40 +1,40 @@
 package dev.patriciafb.bankacount.models;
 
 public class Account {
+    protected double balance;
+    protected int numberOfDeposits = 0;
+    protected int numberOfWithdrawals = 0;
+    protected double annualInterestRate;
+    protected double monthlyFee = 0;
 
-    private double balance;
-    private int numberConsignments;
-    private int numberRetirements;
-
-    public Account(double initialBalance, int initialConsignments) {
-        this.balance = initialBalance;
-        this.numberConsignments = initialConsignments;
-        this.numberRetirements = 0;
+    public Account(double balance, double annualInterestRate) {
+        this.balance = balance;
+        this.annualInterestRate = annualInterestRate;
     }
 
-    public void record(double amount) {
-        this.balance += amount;
-        this.numberConsignments++;
+    public void deposit(double amount) {
+        balance += amount;
+        numberOfDeposits++;
     }
 
-    public double getBalance() {
-        return this.balance;
+    public boolean withdraw(double amount) {
+        if (amount > balance) return false;
+        balance -= amount;
+        numberOfWithdrawals++;
+        return true;
     }
 
-    public int getNumberConsignments() {
-        return numberConsignments;
+    public void calculateMonthlyInterest() {
+        balance += balance * (annualInterestRate / 100) / 12;
     }
 
-    public boolean getMoney(double amount) {
-        if (amount > 0 && amount <= this.balance) {
-            this.balance -= amount;
-            this.numberRetirements++;
-            return true;
-        }
-        return false;
+    public void generateMonthlyStatement() {
+        balance -= monthlyFee;
+        calculateMonthlyInterest();
     }
 
-    public int getNumberRetirement() {
-        return this.numberRetirements;
+    public String printAccountDetails() {
+        return String.format("Balance: %.2f, Deposits: %d, Withdrawals: %d, Monthly Fee: %.2f",
+                balance, numberOfDeposits, numberOfWithdrawals, monthlyFee);
     }
 }
