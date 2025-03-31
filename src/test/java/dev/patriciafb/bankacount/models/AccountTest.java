@@ -18,6 +18,17 @@ public class AccountTest {
         assertEquals(1, account.getNumberOfDeposits(), "Number of deposits should increment by 1");
     }
 
+    @Test
+    void testWithdraw() {
+        Account account = new Account(1000, 5);
+        boolean result = account.withdraw(500.0);
+        assertThat(result).isTrue(); 
+        assertThat(account.getBalance()).isCloseTo(500.0, Offset.offset(0.01));
+        assertThat(account.getNumberOfWithdrawals()).isEqualTo(1);
+    }
+
+    
+
     
    /*  @Test
     void testRecord() {

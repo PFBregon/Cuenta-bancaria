@@ -27,6 +27,10 @@ public class Account {
         return this.numberOfDeposits;
     }
 
+    private void withdraw(double _) {
+        // TODO
+    }
+
     /*private int numberConsignments;
     private int numberRetirements;
 
