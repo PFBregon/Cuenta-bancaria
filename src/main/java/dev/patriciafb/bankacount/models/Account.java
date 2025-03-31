@@ -27,8 +27,17 @@ public class Account {
         return this.numberOfDeposits;
     }
 
-    private void withdraw(double _) {
-        // TODO
+    public int getNumberOfWithdrawals() {
+        return this.numberOfWithdrawals;
+    }
+
+    public boolean withdraw(double amount) {
+        if (amount > 0 && amount <= this.balance) { 
+            this.balance -= amount;
+            this.numberOfWithdrawals++;
+            return true;
+        }
+        return false; 
     }
 
     /*private int numberConsignments;
