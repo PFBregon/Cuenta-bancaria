@@ -46,8 +46,13 @@ public class Account {
     }
 
     public void generateMonthlyStatement() {
-        this.balance -= this.monthlyFee; 
-        calculateMonthlyInterest(); 
+        calculateMonthlyInterest();
+        this.balance -= this.monthlyFee;
+    }
+
+    public String printAccountDetails() {
+        return String.format("Balance: %.2f, Deposits: %d, Withdrawals: %d, Monthly Fee: %.2f",
+                balance, numberOfDeposits, numberOfWithdrawals, monthlyFee);
     }
 
     /*private int numberConsignments;
