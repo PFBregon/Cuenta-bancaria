@@ -31,7 +31,8 @@ public class AccountController {
         }
     }
 
-    private void generateMonthlyStatement() {
-        // TODO
+    public void generateMonthlyStatement() {
+        accountService.generateMonthlyStatement();
+        System.out.println("Monthly statement generated.");
     }
 }
