@@ -29,4 +29,11 @@ public class BankAcountApplicationTest {
 
         verify(account, times(1)).deposit(500);
     }
+
+    @Test
+    void testWithdrawSuccess() {
+        when(account.withdraw(300)).thenReturn(true);
+        accountController.withdraw(300);
+        verify(account, times(1)).withdraw(300);
+    }
 }
