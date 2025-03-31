@@ -18,7 +18,16 @@ public class AccountController {
         System.out.println("Deposit successful.");
     }
 
-    private void withdraw(int _) {
-        // TODO
+    public void withdraw(double amount) {
+        if (amount <= 0) {
+            System.out.println("Invalid withdrawal amount.");
+            return;
+        }
+        boolean success = accountService.makeWithdrawal(amount);
+        if (success) {
+            System.out.println("Withdrawal successful.");
+        } else {
+            System.out.println("Insufficient funds or invalid amount.");
+        }
     }
 }
