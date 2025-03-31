@@ -42,4 +42,12 @@ public class AccountControllerTest {
         verify(accountService, times(1)).makeWithdrawal(1500);
     }
 
+    @Test
+    void testGenerateMonthlyStatement() {
+        doNothing().when(accountService).generateMonthlyStatement();
+        accountController.generateMonthlyStatement();
+
+        verify(accountService, times(1)).generateMonthlyStatement();
+    }
+
 }

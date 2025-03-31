@@ -30,4 +30,8 @@ public class AccountController {
             System.out.println("Insufficient funds or invalid amount.");
         }
     }
+
+    private void generateMonthlyStatement() {
+        // TODO
+    }
 }
