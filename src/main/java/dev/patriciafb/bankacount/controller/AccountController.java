@@ -35,4 +35,9 @@ public class AccountController {
         accountService.generateMonthlyStatement();
         System.out.println("Monthly statement generated.");
     }
+
+    public void displayAccountStatus() {
+        String status = accountService.getAccountStatus();
+        System.out.println("Account Status: " + status);
+    }
 }
