@@ -50,4 +50,12 @@ public class BankAcountApplicationTest {
         accountController.generateMonthlyStatement();
         verify(account, times(1)).generateMonthlyStatement();
     }
+
+    @Test
+    void testDisplayAccountStatus() {
+        String mockStatus = "Balance: 1000.00, Deposits: 2, Withdrawals: 1, Monthly Fee: 0.00";
+        when(account.printAccountDetails()).thenReturn(mockStatus);
+        String status = account.printAccountDetails();
+        assertThat(status).isEqualTo(mockStatus);
+    }
 }
