@@ -41,12 +41,15 @@ public class Account {
     }
 
     public void calculateMonthlyInterest() {
-       
+        double monthlyInterest = this.balance * (this.annualInterestRate / 100) / 12;
+        this.balance += monthlyInterest;
     }
 
     public void generateMonthlyStatement() {
-       
+        this.balance -= this.monthlyFee; 
+        calculateMonthlyInterest(); 
     }
+
     /*private int numberConsignments;
     private int numberRetirements;
 
