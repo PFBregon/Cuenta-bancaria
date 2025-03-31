@@ -6,10 +6,14 @@ import org.junit.Test;
 
 public class CheckingAccountTest {
     @Test
-    void testOverdraft() {
+    public void testOverdraft() {
         CheckingAccount account = new CheckingAccount(1000, 5);
-        account.withdraw(1500); 
-        assertEquals(0, account.getBalance());
-        assertEquals(500, account.getOverdraft());
+        boolean result = account.withdraw(1500); 
+    
+        System.out.println("Después del retiro - Balance: " + account.getBalance() + ", Overdraft: " + account.getOverdraft());
+    
+        assertEquals(true, result, "El retiro de dinero debería ser exitoso");
+        assertEquals(0, account.getBalance(), "El saldo debería ser 0 después del sobregiro");
+        assertEquals(500, account.getOverdraft(), "El sobregiro debería ser 500");
     }
-}
+}    
