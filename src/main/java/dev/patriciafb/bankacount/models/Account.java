@@ -40,6 +40,13 @@ public class Account {
         return false; 
     }
 
+    public void calculateMonthlyInterest() {
+       
+    }
+
+    public void generateMonthlyStatement() {
+       
+    }
     /*private int numberConsignments;
     private int numberRetirements;
 

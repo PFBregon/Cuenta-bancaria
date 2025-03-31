@@ -27,6 +27,13 @@ public class AccountTest {
         assertThat(account.getNumberOfWithdrawals()).isEqualTo(1);
     }
 
+    @Test
+    void testCalculateMonthlyInterest() {
+        Account account = new Account(1000, 12);
+        account.calculateMonthlyInterest();
+        assertThat(account.getBalance()).isCloseTo(1010.0, Offset.offset(0.01));
+    }
+
     
 
     
