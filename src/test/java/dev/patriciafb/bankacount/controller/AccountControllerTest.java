@@ -34,4 +34,12 @@ public class AccountControllerTest {
         verify(accountService, times(1)).makeWithdrawal(300);
     }
 
+    @Test
+    void testWithdrawFailure() {
+        when(accountService.makeWithdrawal(1500)).thenReturn(false);
+        accountController.withdraw(1500);
+
+        verify(accountService, times(1)).makeWithdrawal(1500);
+    }
+
 }
