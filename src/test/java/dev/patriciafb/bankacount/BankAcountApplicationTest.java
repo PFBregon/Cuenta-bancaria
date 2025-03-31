@@ -43,4 +43,11 @@ public class BankAcountApplicationTest {
         accountController.withdraw(1500);
         verify(account, times(1)).withdraw(1500);
     }
+
+    @Test
+    void testGenerateMonthlyStatement() {
+        doNothing().when(account).generateMonthlyStatement();
+        accountController.generateMonthlyStatement();
+        verify(account, times(1)).generateMonthlyStatement();
+    }
 }
