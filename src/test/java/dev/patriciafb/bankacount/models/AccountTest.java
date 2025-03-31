@@ -34,7 +34,13 @@ public class AccountTest {
         assertThat(account.getBalance()).isCloseTo(1010.0, Offset.offset(0.01));
     }
 
-    
+    @Test
+    void testGenerateMonthlyStatement() {
+        Account account = new Account(1000, 12);
+        account.monthlyFee = 50; 
+        account.generateMonthlyStatement();
+        assertThat(account.getBalance()).isCloseTo(960.0, Offset.offset(0.01));
+    }
 
     
    /*  @Test
