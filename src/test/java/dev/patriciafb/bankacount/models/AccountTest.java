@@ -41,24 +41,4 @@ public class AccountTest {
         account.generateMonthlyStatement();
         assertThat(account.getBalance()).isCloseTo(960.0, Offset.offset(0.01));
     }
-
-    
-   /*  @Test
-    void testRecord() {
-        Account account = new Account(1000, 5);
-        
-        account.record(50.0);
-        assertEquals(1050.0, account.getBalance());
-        assertEquals(6, account.getNumberConsignments());
-    }
-
-    @Test
-    void testGetMoney() {
-        Account account = new Account(1000, 5);
-        boolean result = account.getMoney(500.0);
-    
-        assertThat(result).isTrue();  
-        assertThat(account.getBalance()).isCloseTo(500.0, Offset.offset(0.01));
-        assertThat(account.getNumberRetirement()).isEqualTo(1);
-    }*/
 }
