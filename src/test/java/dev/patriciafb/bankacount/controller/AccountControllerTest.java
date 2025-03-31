@@ -26,4 +26,12 @@ public class AccountControllerTest {
         verify(accountService, times(1)).makeDeposit(500);
     }
 
+    @Test
+    void testWithdrawSuccess() {
+        when(accountService.makeWithdrawal(300)).thenReturn(true);
+
+        accountController.withdraw(300);
+        verify(accountService, times(1)).makeWithdrawal(300);
+    }
+
 }
