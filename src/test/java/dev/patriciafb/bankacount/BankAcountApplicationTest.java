@@ -2,60 +2,63 @@ package dev.patriciafb.bankacount;
 
 import dev.patriciafb.bankacount.controller.AccountController;
 import dev.patriciafb.bankacount.models.Account;
+import dev.patriciafb.bankacount.models.CheckingAccount;
+import dev.patriciafb.bankacount.models.SavingsAccount;
 import dev.patriciafb.bankacount.service.AccountService;
 
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.mockito.Mockito.*;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class BankAcountApplicationTest {
 
-    private Account account;
+@SpringBootTest
+@RunWith(SpringRunner.class)
+public class BankAccountApplicationTest {
+
+    private Account savingsAccount;
     private AccountService accountService;
     private AccountController accountController;
+    private Account checkingAccount;
 
     @BeforeEach
     void setUp() {
-        account = mock(Account.class);
-        accountService = new AccountService(account);
+        savingsAccount = new SavingsAccount(15000, 5);
+        checkingAccount = new CheckingAccount(1000, 5);
+        accountService = new AccountService(savingsAccount); 
         accountController = new AccountController(accountService);
     }
+
     @Test
     void testDeposit() {
-        doNothing().when(account).deposit(500);
         accountController.deposit(500);
-
-        verify(account, times(1)).deposit(500);
+        assertEquals(15500, savingsAccount.getBalance(), "El saldo debería incrementar en 500");
     }
 
     @Test
     void testWithdrawSuccess() {
-        when(account.withdraw(300)).thenReturn(true);
-        accountController.withdraw(300);
-        verify(account, times(1)).withdraw(300);
+        boolean result = accountController.withdraw(500);
+        assertTrue(result, "El retiro debería ser exitoso");
+        assertEquals(14500, savingsAccount.getBalance(), "El saldo debería disminuir en 500");
     }
 
     @Test
     void testWithdrawFailure() {
-        when(account.withdraw(1500)).thenReturn(false);
-        accountController.withdraw(1500);
-        verify(account, times(1)).withdraw(1500);
+        boolean result = accountController.withdraw(20000); 
+        assertFalse(result, "El retiro debería fallar");
+        assertEquals(15000, savingsAccount.getBalance(), "El saldo no debería cambiar");
     }
 
     @Test
     void testGenerateMonthlyStatement() {
-        doNothing().when(account).generateMonthlyStatement();
         accountController.generateMonthlyStatement();
-        verify(account, times(1)).generateMonthlyStatement();
+        assertTrue(savingsAccount.getBalance() > 15000, "El saldo debería incluir intereses mensuales");
     }
-
-    @Test
-    void testDisplayAccountStatus() {
-        String mockStatus = "Balance: 1000.00, Deposits: 2, Withdrawals: 1, Monthly Fee: 0.00";
-        when(account.printAccountDetails()).thenReturn(mockStatus);
-        String status = account.printAccountDetails();
-        assertThat(status).isEqualTo(mockStatus);
-    }
+}
 }

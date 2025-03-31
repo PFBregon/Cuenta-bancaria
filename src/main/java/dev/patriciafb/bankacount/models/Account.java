@@ -1,5 +1,7 @@
 package dev.patriciafb.bankacount.models;
 
+import java.util.Locale;
+
 public class Account {
     protected double balance;
     protected int numberOfDeposits = 0;
@@ -11,24 +13,12 @@ public class Account {
         this.balance = initialBalance;
         this.annualInterestRate = annualInterestRate;
     }
-   
+
     public void deposit(double amount) {
         if (amount > 0) { 
             this.balance += amount;
             this.numberOfDeposits++;
         }
-    }
-
-    public double getBalance() {
-        return this.balance;
-    }
-
-    public int getNumberOfDeposits() {
-        return this.numberOfDeposits;
-    }
-
-    public int getNumberOfWithdrawals() {
-        return this.numberOfWithdrawals;
     }
 
     public boolean withdraw(double amount) {
@@ -51,11 +41,24 @@ public class Account {
     }
 
     public String printAccountDetails() {
-        return String.format("Balance: %.2f, Deposits: %d, Withdrawals: %d, Monthly Fee: %.2f",
+        return String.format(Locale.US,"Balance: %.2f, Deposits: %d, Withdrawals: %d, Monthly Fee: %.2f",
                 balance, numberOfDeposits, numberOfWithdrawals, monthlyFee);
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public int getNumberOfDeposits() {
+        return numberOfDeposits;
+    }
+
+    public int getNumberOfWithdrawals() {
+        return numberOfWithdrawals;
     }
 
     protected void setBalance(double balance) {
         this.balance = balance;
     }
-}    
+
+}

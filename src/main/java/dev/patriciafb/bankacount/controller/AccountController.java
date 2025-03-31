@@ -18,10 +18,10 @@ public class AccountController {
         System.out.println("Deposit successful.");
     }
 
-    public void withdraw(double amount) {
+    public boolean withdraw(double amount) {
         if (amount <= 0) {
             System.out.println("Invalid withdrawal amount.");
-            return;
+            return false;
         }
         boolean success = accountService.makeWithdrawal(amount);
         if (success) {
@@ -29,7 +29,10 @@ public class AccountController {
         } else {
             System.out.println("Insufficient funds or invalid amount.");
         }
+        return success; 
     }
+    
+    
 
     public void generateMonthlyStatement() {
         accountService.generateMonthlyStatement();
