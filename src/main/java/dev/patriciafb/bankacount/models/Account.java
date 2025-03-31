@@ -8,13 +8,23 @@ public class Account {
     protected double monthlyFee = 0;
 
     public Account(double initialBalance, double annualInterestRate) {
+        this.balance = initialBalance;
+        this.annualInterestRate = annualInterestRate;
     }
    
     public void deposit(double amount) {
+        if (amount > 0) { 
+            this.balance += amount;
+            this.numberOfDeposits++;
+        }
     }
 
     public double getBalance() {
         return this.balance;
+    }
+
+    public int getNumberOfDeposits() {
+        return this.numberOfDeposits;
     }
 
     /*private int numberConsignments;
