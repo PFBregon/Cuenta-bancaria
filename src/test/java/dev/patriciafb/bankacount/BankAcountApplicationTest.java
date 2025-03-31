@@ -36,4 +36,11 @@ public class BankAcountApplicationTest {
         accountController.withdraw(300);
         verify(account, times(1)).withdraw(300);
     }
+
+    @Test
+    void testWithdrawFailure() {
+        when(account.withdraw(1500)).thenReturn(false);
+        accountController.withdraw(1500);
+        verify(account, times(1)).withdraw(1500);
+    }
 }
