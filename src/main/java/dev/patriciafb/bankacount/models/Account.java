@@ -7,34 +7,46 @@ public class Account {
     protected double annualInterestRate;
     protected double monthlyFee = 0;
 
-    public Account(double balance, double annualInterestRate) {
-        this.balance = balance;
-        this.annualInterestRate = annualInterestRate;
+    public Account(double initialBalance, double annualInterestRate) {
     }
-
+   
     public void deposit(double amount) {
-        balance += amount;
-        numberOfDeposits++;
     }
 
-    public boolean withdraw(double amount) {
-        if (amount > balance) return false;
-        balance -= amount;
-        numberOfWithdrawals++;
-        return true;
+    public double getBalance() {
+        return this.balance;
     }
 
-    public void calculateMonthlyInterest() {
-        balance += balance * (annualInterestRate / 100) / 12;
+    /*private int numberConsignments;
+    private int numberRetirements;
+
+    public Account(double initialBalance, int initialConsignments) {
+        this.balance = initialBalance;
+        this.numberConsignments = initialConsignments;
+        this.numberRetirements = 0;
     }
 
-    public void generateMonthlyStatement() {
-        balance -= monthlyFee;
-        calculateMonthlyInterest();
+    public void record(double amount) {
+        this.balance += amount;
+        this.numberConsignments++;
     }
 
-    public String printAccountDetails() {
-        return String.format("Balance: %.2f, Deposits: %d, Withdrawals: %d, Monthly Fee: %.2f",
-                balance, numberOfDeposits, numberOfWithdrawals, monthlyFee);
+    
+
+    public int getNumberConsignments() {
+        return numberConsignments;
     }
+
+    public boolean getMoney(double amount) {
+        if (amount > 0 && amount <= this.balance) {
+            this.balance -= amount;
+            this.numberRetirements++;
+            return true;
+        }
+        return false;
+    }
+
+    public int getNumberRetirement() {
+        return this.numberRetirements;
+    }*/
 }

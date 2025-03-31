@@ -7,7 +7,19 @@ import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.Test;
 
 public class AccountTest {
+
     @Test
+    void testDeposit() {
+        Account account = new Account(1000, 5);
+
+        account.deposit(50.0);
+
+        assertEquals(1050.0, account.getBalance(), "Balance should be updated after deposit");
+        assertEquals(1, account.getNumberOfDeposits(), "Number of deposits should increment by 1");
+    }
+
+    
+   /*  @Test
     void testRecord() {
         Account account = new Account(1000, 5);
         
@@ -24,5 +36,5 @@ public class AccountTest {
         assertThat(result).isTrue();  
         assertThat(account.getBalance()).isCloseTo(500.0, Offset.offset(0.01));
         assertThat(account.getNumberRetirement()).isEqualTo(1);
-    }
+    }*/
 }
